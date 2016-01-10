@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title post it
+    script(src='/jquery.js')
+  body
+    form(id='blog' method='post' action='/admin' enctype='multipart/form-data')
+      input(id='title' name='title' type='text')
+      input(id='pic' name='pic' type='file')
+      input(id='capt' name='capt' type='text')
+      input(id='send' type='submit')
