@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads');
   },
   filename: function (req, file, cb) {
-    cb(null, 'pans.jpg');
+    cb(null, 'header.jpg');
   }
 });
 
@@ -26,12 +27,20 @@ router.get('/admin',function(req,res,next) {
 });
 router.post('/admin',upload.single('pic'),function(req,res,next) {
     var dbinst = req.app.get('db');
-    console.log(dbinst);
-    console.log(req.body);
-    console.log(req.file);
-    //dbinst.serialize(function() {
-    //  dbinst.run('insert into posts values ((?), (?), (?))',title,pic,blurb);
-    //});
+    var title = req.body.title;
+    var capt = req.body.capt;
+    var last;
+    dbinst.serialize(function() {
+      dbinst.run('insert into posts values(?,?)', title,capt);
+      dbinst.get('select last_insert_rowid() as lastid',function(err,row) {
+        last = row.lastid;
+        console.log(last);
+        fs.mkdir('./uploads/post'+last,function(){
+          fs.rename('./uploads/header.jpg', './uploads/post'+last+'/header.jpg');
+        });
+      });
+    });
+  res.render('admin');
   });
 
 module.exports = router;
