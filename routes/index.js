@@ -52,4 +52,15 @@ router.post('/admin',upload.single('pic'),function(req,res,next) {
   res.render('admin');
   });
 
+router.get('/post/:id', function(req,res,next) {
+  var current = req.params.id;
+  var dbinst = req.app.get('db');
+  var post;
+  dbinst.get('select * from posts where rowid = (?)',current,function(err,row) {
+    post = {id: current, title: row.title, capt: row.capt };
+    console.log(post);
+    res.render('post', { post: post });
+  });
+});
+
 module.exports = router;

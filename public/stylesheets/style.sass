@@ -2,15 +2,18 @@ html, body
   margin: 0
   padding: 0
   
+a
+  color: #58595b
 
 body
   font-family: 'arial', sans-serif
   background-color:#e5ebf4
-  color: #58595b
 header
   position: fixed
   width: 100%
   background-color: white
+  z-index: 2
+  box-shadow: 0 1px 5px black
 
   h1
     margin: 0
@@ -30,9 +33,6 @@ header
     vertical-align: middle
 
 nav, .item
-  background-color: white
-  display: inline-block
-  border-radius: 10px
   vertical-align: top
   width: 250px
   margin-bottom: 10px
@@ -45,3 +45,19 @@ nav, .item
 .item
   img
     width: 80%
+article
+  background-color: white
+  display: inline-block
+  border-radius: 10px
+  text-align: center
+  
+
+  img
+    width: 80%
+
+#post
+  padding: 2%
+  padding-top: 5.5%
+  h1, p
+    margin: 2%
+    text-align: left

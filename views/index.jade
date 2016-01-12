@@ -3,7 +3,8 @@ extends layout
 block content
   #grid
     each post in posts
-      article.item
-        h1= post.title
-        img(src='post#{post.id}/header.jpg')
-        p= post.capt
+      a(href='/post/#{post.id}')
+        article.item
+          h1= post.title
+          img(src='/post#{post.id}/header.jpg')
+          p= post.capt

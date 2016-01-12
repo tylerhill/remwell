@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  #post
+    article
+      h1 #{post.title}
+      img(src='/post#{post.id}/header.jpg')
+      p #{post.capt}
+
