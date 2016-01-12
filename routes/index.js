@@ -17,8 +17,17 @@ var upload = multer({ storage: storage });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(upload);
-  res.render('index', { title: 'Express' });
+  var dbinst = req.app.get('db');
+  var posts = [];
+  dbinst.each('select rowid, * from posts', function(err,row) {
+    var capt = row.capt.substring(0,300);
+    capt = capt.concat('...');
+    posts.push({id: row.rowid, title: row.title, capt: capt});
+  },
+  function() {
+    console.log(posts);
+    res.render('index', { posts: posts });
+  });
 });
 
 

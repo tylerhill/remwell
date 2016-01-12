@@ -2,48 +2,8 @@ extends layout
 
 block content
   #grid
-    nav(class='item')
-      ul
-        li Resources
-        li Commemorate
-        li Events
-        li News
-        li About
-    #current(class='item')
-      p Jerri!
-    #news(class='item')
-      p facebook
-    .item
-      ul 
-        li oh yeah
-        li oh yeah
-    .item
-      ul 
-        li oh yeah
-        li oh yeah
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      ul 
-        li oh yeah
-        li oh yeah
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-    .item
-      p no no no
-
-        
+    each post in posts
+      article.item
+        h1= post.title
+        img(src='post#{post.id}/header.jpg')
+        p= post.capt

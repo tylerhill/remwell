@@ -33,6 +33,7 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('node_modules/jquery/dist'));
+app.use(express.static('uploads'));
 
 app.use('/', routes);
 app.use('/users', users);
